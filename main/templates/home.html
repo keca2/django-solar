@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i" rel="stylesheet">
+
+<div class="jumbotron jumbotron-fluid">
+
+    <div class="animated animatedFadeInUp fadeInUp">
+        <h2 class="display-3"> hello, my name is <img src="{% static '/images/k.jpg' %}" />evin<br/></h2>
+        <br/>
+    </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<div class="music">
+    <div class="row">
+        <h1 class="display-7">here are some songs i'm working on</h1>
+        <br/>
+        <hr class="my-0">
+        <br/>
+        <p class="lead">(will record on better equipment one day)</p>
+        <div class="row">
+
+            <div class="col-sm">
+
+                <div class="animated animatedFadeInUp fadeInUp">
+                    <div id="single-song-player">
+                        <img data-amplitude-song-index="0" data-amplitude-song-info="cover_art_url"/>
+                        <div class="bottom-container">
+                            <div class="meta-container">
+                                <progress class="amplitude-song-played-progress" data-amplitude-song-index="0" id="song-played-progress-1"></progress>
+
+                                <div class="time-container">
+                                    <span class="current-time">
+                                        <span class="amplitude-current-minutes" data-amplitude-song-index="0"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="0"></span>
+                                    </span>
+
+                                    <span class="duration">
+                                        <span class="amplitude-duration-minutes" data-amplitude-song-index="0">01</span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="0">20</span>
+                                    </span>
+
+                                </div>
+
+                                <div class="control-container">
+                                    <div class="amplitude-play-pause" data-amplitude-song-index="0" id="play-pause"></div>
+                                    <div class="meta-container">
+                                        <span data-amplitude-song-index="0" data-amplitude-song-info="name" class="song-name"></span>
+                                        <span data-amplitude-song-index="0" data-amplitude-song-info="artist"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+
+                <div class="animated animatedFadeInUp fadeInUp">
+                    <div id="single-song-player">
+                        <img data-amplitude-song-index="1" data-amplitude-song-info="cover_art_url"/>
+                        <div class="bottom-container">
+                            <progress class="amplitude-song-played-progress" data-amplitude-song-index="1" id="song-played-progress-2"></progress>
+
+                            <div class="time-container">
+                                <span class="current-time">
+                                    <span class="amplitude-current-minutes" data-amplitude-song-index="1"></span>:<span class="amplitude-current-seconds" data-amplitude-song-index="1"></span>
+                                </span>
+
+                                <span class="duration">
+                                    <span class="amplitude-duration-minutes" data-amplitude-song-index="1"></span>:<span class="amplitude-duration-seconds" data-amplitude-song-index="1"></span>
+                                </span>
+
+                            </div>
+
+                            <div class="control-container">
+                                <div class="amplitude-play-pause" data-amplitude-song-index="1" id="play-pause"></div>
+                                <div class="meta-container">
+                                    <span data-amplitude-song-index="1" data-amplitude-song-info="name" class="song-name"></span>
+                                    <span data-amplitude-song-index="1" data-amplitude-song-info="artist"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+
+<div class="pictures">
+    <h1 class="display-7">here are some photography i made</h1>
+    <hr class="my-0">
+    <br/>
+    <p class="lead">(so art much talent)</p>
+    <br/>
+    <br/>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4">
+
+            <!-- for article in object_list % -->
+
+            {% for article in articles %}
+
+            <div class="col mb-4">
+                <div class="card">
+                    {% if article.image %}
+                    <img src="{{ article.image.url }}" class="card-img-top" alt="...">
+                    {% else %}
+                    <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+                    {% endif %}
+                    <a href="{% url 'article-detail' article.pk %}" class="stretched-link"></a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static '/js/main.js' %}"></script>
+<script src="{% static '/js/mainjq.js' %}"></script>
+
+{% endblock %}

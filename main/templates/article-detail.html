@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %}{{ article.title_tag }}{% endblock %}
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/article-details.css' %}">
+
+    <h1>{{ article.title }}</h1>
+
+    <small> by: {{ article.author }} | {{article.article_date }} - <a href="{% url 'update-article' article.pk %}">edit</a>
+        <a href="{% url 'delete-article' article.pk %}">delete</a></small><br/>
+
+    <br/>
+
+    {% if article.image %}
+    <img src="{{ article.image.url }}">
+    {% endif %}
+    <br/>
+    {{ article.content|safe }}
+    <br/><br/>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">back</a>
+    <br/><br/>
+</div>
+
+<script src="{% static '/js/main.js' %}"></script>
+    {% endblock %}

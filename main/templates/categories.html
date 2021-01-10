@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ cats }}</h1>
+
+<br/>
+<br/>
+<br/>
+{% if category_articles %}
+
+<div class="container">
+    <div class="row">
+
+        {% for article in category_articles %}
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                {% if article.image %}
+                <img src="{{ article.image.url }}" class="card-img-top">
+                {% endif %}
+
+                <div class="card-body">
+                    <p class="card-text">{{ article.content|slice:"120"|safe}}</p>
+                    <a href="{% url 'article-detail' article.pk %}" class="btn btn-primary">{{ article.title }}</a>
+                    <a href="{% url 'category' article.category|slugify %}" class="btn btn-secondary">{{ article.category }}</a>
+                </div>
+            </div>
+
+            <br/>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <h2>sorry this page doesn't exists.</h2>
+    {% endif %}
+
+    {% endblock %}
+
+
+
+
+
+
